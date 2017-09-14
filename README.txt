@@ -8,8 +8,9 @@ Some  of the components implemented
 - Forward and backward passes of multiple layers in a DNN
 - Numerical and analytical gradient checking
 - Fully connected NN
+- Convolutional neural net layers
 
 Still to come implementations
 
-- Convolutional Neural Nets
+- CNN class
 
