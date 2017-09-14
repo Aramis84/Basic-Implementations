@@ -1,8 +1,3 @@
-
-# coding: utf-8
-
-# In[37]:
-
 from Layers import *
 from Layer_Configs import *
 from GradientCheck import *
