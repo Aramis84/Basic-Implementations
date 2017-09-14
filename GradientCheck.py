@@ -1,8 +1,3 @@
-
-# coding: utf-8
-
-# In[4]:
-
 import numpy as np
 def gradient_check(f, W, analytic_grad, num_dim = 10, h = 1e-5):
     
