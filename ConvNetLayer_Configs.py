@@ -1,8 +1,3 @@
-
-# coding: utf-8
-
-# In[14]:
-
 from ConvNetLayers import *
 from Layers import *
 
