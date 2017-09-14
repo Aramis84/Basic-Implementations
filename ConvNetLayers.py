@@ -1,10 +1,6 @@
 
-# coding: utf-8
-
-# In[89]:
-
 import numpy as np
-
+from Layers import *
 """
 Implentations of convolutional and max pooling layers. These are not vectorized implementations
 
@@ -208,4 +204,51 @@ def max_pooling_backward(dout, cache):
                     dX[ii,f, tlc:blc, trc:brc] = patch1*dout[ii,f,height,width] 
   
     return dX
+
+
+def spatial_batchnorm_forward(X, gamma, beta, bn_param):
+    """
+    Implements forward pass of spatial batch normalization in a convolutional net.
+    Inputs :X input matrix -> N x F x H x W (N samples each with F channels, and spatial size HxW, coming in from a 
+                              previous convolutional layer)
+            gamma scale parameter -> 1 dimensional of F elements (one gamma parameter for each feature map)
+            beta shift parameter -> 1 dimensional of F elements (one beta parameter for each feature map)
+            
+            bn_param -> dictionary of hyperparameters
+               see help of batchnorm_forward for details
+               
+    Outputs :out -> output of the batch normalization layer N x F x H x W
+            cache -> collection of variables required in the backward pass
+    """
+      
+    N, C, H, W = X.shape
+    Nprime = N*H*W
+    Xnew = X.reshape((Nprime,C))
+   
+    out_intermediate, cache = batchnorm_forward(Xnew, gamma, beta, bn_param)
+    out = out_intermediate.reshape((N, C, H, W))
+    
+    return out, cache
+
+
+def spatial_batchnorm_backward(dout, cache):
+    """
+    Implements backward pass of spatial batch normalization in a convolutional net.
+
+    Inputs :dout -> Upstream derivatives (N x F x H x W)
+            cache-> collection of variables required in the backward pass
+    
+    Ouputs : dX: Gradient with respect to X (N x F x H x W)
+             dgamma -> gradient with respect to gamma, 1 dimensional of F elements
+             dbeta -> gradient with respect to beta, 1 dimensional of F elements
+          
+    """
+    N, C, H, W = dout.shape
+    Nprime = N*H*W
+    dout_new = dout.reshape((Nprime,C))
+   
+    dX_intermediate, dgamma, dbeta = batchnorm_backward(dout_new, cache)
+    dX = dX_intermediate.reshape((N, C, H, W))
+    
+    return dX, dgamma, dbeta
 
