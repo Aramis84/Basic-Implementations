@@ -52,6 +52,7 @@ def affine_backward(dout, cache):
         Xnew = X
                          
     dX = np.dot(dout,w.T) # NxD matrix
+    dX = dX.reshape(X.shape)
     dw = np.dot(Xnew.T, dout) # DxK matrix 
     db = np.dot(np.ones((1,N)), dout).reshape(K,) # 1D array of K elements
     
