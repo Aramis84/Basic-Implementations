@@ -85,9 +85,3 @@ def eval_numerical_gradient_array(f, x, df, h=1e-5):
         it.iternext()
     return grad
 
-
-
-# In[ ]:
-
-
-
