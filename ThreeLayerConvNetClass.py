@@ -12,14 +12,15 @@ class ThreeLayerConvNet(object):
     
     conv -> relu -> max pool -> full connected (1 hidden layer with ReLu) -> output layer
 
-    This class does not implement an optimizer. It will interact with a separate solver (provided in the CS 231n class material)
+    This class does not implement an optimizer. It will interact with a separate solver (provided in the CS 231n class 
+    material)
     
     The learnable parameters of the model are stored in the dictionary
     self.params that maps parameter names to numpy arrays.
     """
     
     
-    def __init__(self, input_dim, hidden_dim, output_dim, num_filters, filter_size = (7,), pool_kernel = (2,), pad = 1,                 filter_stride = 1, pool_stride =2,  wt_init_std = 0.001, reg = 0.0, dtype = np.float32):
+    def __init__(self, input_dim, hidden_dim, output_dim, num_filters, filter_size = (7,), pool_kernel = (2,), pad = 1, filter_stride = 1, pool_stride =2,  wt_init_std = 0.001, reg = 0.0, dtype = np.float32):
         
         self.reg = reg
         self.dtype = dtype
@@ -57,7 +58,7 @@ class ThreeLayerConvNet(object):
         var_H_pool = (dim_H_conv - self.poolh)%self.pstride
         var_W_pool = (dim_W_conv - self.poolw)%self.pstride
         
-        assert (var_H_pool == 0 and var_W_pool ==0), 'Pool kernel and input dimensions do not work. Change filter dimensions and/or pool stride'
+        assert (var_H_pool == 0 and var_W_pool ==0), 'Pool kernel and input dimensions do not work. 
     
         dim_H_pool = int((dim_H_conv - self.poolh)/self.pstride) + 1
         dim_W_pool = int((dim_W_conv - self.poolw)/self.pstride) + 1
