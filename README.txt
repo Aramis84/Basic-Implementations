@@ -9,8 +9,9 @@ Some  of the components implemented
 - Numerical and analytical gradient checking
 - Fully connected NN
 - Convolutional neural net layers
+- Three layer CNN class
 
 Still to come implementations
+- few other bells and whistles for CNN
 
-- CNN class
 
